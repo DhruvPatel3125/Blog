@@ -1,0 +1,4 @@
+/* Basic spacing */
+body { padding-bottom: 40px; }
+.card-title a { text-decoration: none; }
+.card-title a:hover { text-decoration: underline; }
