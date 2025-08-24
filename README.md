@@ -169,3 +169,6 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
+
+
+ c:\xampp\php\php.exe c:\xampp\htdocs\Blog\migrations\002_seed_admin.php
