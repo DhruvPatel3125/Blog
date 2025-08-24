@@ -22,7 +22,7 @@ require __DIR__ . '/includes/header.php';
 <article class="mb-4">
   <h1><?= e($post['title']) ?></h1>
   <?php if (!empty($post['image_path'])): ?>
-    <img src="<?= e($BASE_URL . $post['image_path']) ?>" alt="<?= e($post['title']) ?>" class="img-fluid mb-3">
+    <img src="<?= e($BASE_URL . $post['image_path']) ?>" alt="<?= e($post['title']) ?>" class="post-image mb-3">
   <?php endif; ?>
   <div class="text-muted mb-3">Published <?= e(date('M d, Y', strtotime($post['created_at']))) ?></div>
   <div><?= nl2br(e($post['content'])) ?></div>

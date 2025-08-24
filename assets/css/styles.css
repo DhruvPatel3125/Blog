@@ -1,4 +1,211 @@
-/* Basic spacing */
-body { padding-bottom: 40px; }
-.card-title a { text-decoration: none; }
+/*
+  Advanced styling for Blog
+  - Modern typography (Inter)
+  - Light/Dark theme via data-theme attribute
+  - Polished cards, forms, buttons, alerts
+  - Consistent image sizing
+  - Responsive improvements
+*/
+
+/* CSS Variables (Light Theme) */
+
+:root {
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+  --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,0.12);
+  --primary: #2563eb; /* blue-600 */
+  --primary-contrast: #ffffff;
+  --accent: #10b981;  /* emerald-500 */
+  --link: #1f2937; /* gray-800 for titles */
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --bg: #0b1220;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --card-bg: #0f172a;
+  --border: #1f2937;
+  --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 6px 18px rgba(0,0,0,0.6);
+  --shadow-hover: 0 10px 28px rgba(0,0,0,0.65);
+  --primary: #60a5fa; /* blue-400 */
+  --primary-contrast: #0b1220;
+  --accent: #34d399;  /* emerald-400 */
+  --link: #e5e7eb;
+}
+
+/* Base styles */
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  padding-bottom: 48px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 { color: var(--text); font-weight: 700; }
+p, .small, .text-muted { color: var(--muted) !important; }
+
+/* Links */
+a { color: var(--primary); }
+a:hover { color: #1d4ed8; /* blue-700 */ }
+
+/* Navbar */
+.navbar {
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: saturate(140%) blur(8px);
+}
+[data-theme="dark"] .navbar {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.navbar-brand { font-weight: 800; letter-spacing: 0.2px; color: var(--text) !important; }
+.navbar-brand:hover { color: var(--text) !important; opacity: .9; }
+.nav-link { color: var(--text) !important; opacity: 0.85; }
+.nav-link:hover { opacity: 1; }
+
+/* Container tweaks */
+.container { max-width: 1060px; }
+
+/* Cards */
+.card {
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(37, 99, 235, 0.25); /* subtle primary tint */
+}
+.card-title a { text-decoration: none; color: var(--link); }
 .card-title a:hover { text-decoration: underline; }
+
+/* Consistent card image sizing */
+.card-img-top {
+  display: block;
+  width: 100%;
+  height: 220px;           /* fallback for older browsers */
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+/* Prefer aspect-ratio when supported */
+@supports (aspect-ratio: 16 / 9) {
+  .card-img-top {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Post (detail) image */
+.post-image {
+  display: block;
+  width: 100%;
+  height: 420px;           /* fallback */
+  object-fit: cover;
+  border-radius: 12px;
+}
+@supports (aspect-ratio: 16 / 9) {
+  .post-image { height: auto; aspect-ratio: 16 / 9; }
+}
+@media (max-width: 576px) {
+  .post-image { height: 240px; }
+}
+
+/* Buttons */
+.btn-primary {
+  --bs-btn-bg: var(--primary);
+  --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: #1d4ed8; /* blue-700 */
+  --bs-btn-hover-border-color: #1d4ed8;
+  --bs-btn-active-bg: #1e40af; /* blue-800 */
+  --bs-btn-active-border-color: #1e40af;
+  color: var(--primary-contrast);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+.btn-outline-secondary {
+  --bs-btn-color: var(--text);
+  --bs-btn-border-color: var(--border);
+  --bs-btn-hover-bg: var(--border);
+  --bs-btn-hover-color: var(--text);
+}
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover { background: rgba(37, 99, 235, 0.08); }
+
+/* Forms */
+.form-control {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.form-control:focus {
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 0 0 .2rem rgba(37, 99, 235, 0.15);
+}
+.form-label { font-weight: 600; color: var(--text); }
+
+/* Alerts */
+.alert { border-radius: 10px; box-shadow: var(--shadow); }
+
+/* Admin table card wrapper */
+.table-card {
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden; /* round table corners */
+}
+
+/* Admin table styles */
+.table-admin thead th {
+  background: linear-gradient(0deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02));
+  color: var(--text);
+  font-weight: 700;
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="dark"] .table-admin thead th {
+  background: linear-gradient(0deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04));
+}
+.table-admin tbody tr {
+  transition: background-color .15s ease;
+}
+.table-admin tbody tr:hover {
+  background-color: rgba(37, 99, 235, 0.06);
+}
+[data-theme="dark"] .table-admin tbody tr:hover {
+  background-color: rgba(96, 165, 250, 0.12);
+}
+.table-admin td, .table-admin th {
+  border-color: var(--border) !important;
+}
+
+/* Text truncation helper */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Footer spacing handled by body padding-bottom */
+
+/* Utility */
+.text-balance { text-wrap: balance; }
+
+/* Flash messages spacing */
+.flash-stack > .alert { margin-bottom: 12px; }

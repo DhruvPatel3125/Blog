@@ -13,27 +13,29 @@ require __DIR__ . '/../includes/header.php';
   <h1 class="mb-0">Posts</h1>
   <a class="btn btn-primary" href="<?= e($BASE_URL) ?>/admin/post_new.php">New Post</a>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Slug</th>
-      <th>Published</th>
-      <th style="width:160px"></th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php foreach ($posts as $post): ?>
-    <tr>
-      <td><?= e($post['title']) ?></td>
-      <td><?= e($post['slug']) ?></td>
-      <td><?= e(date('M d, Y', strtotime($post['created_at']))) ?></td>
-      <td class="text-end">
-        <a class="btn btn-sm btn-outline-secondary" href="<?= e($BASE_URL) ?>/admin/post_edit.php?id=<?= (int)$post['id'] ?>">Edit</a>
-        <a class="btn btn-sm btn-outline-danger" href="<?= e($BASE_URL) ?>/admin/post_delete.php?id=<?= (int)$post['id'] ?>" onclick="return confirm('Delete this post?')">Delete</a>
-      </td>
-    </tr>
-  <?php endforeach; ?>
-  </tbody>
-</table>
+<div class="table-card table-responsive">
+  <table class="table table-striped table-hover table-admin align-middle mb-0">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Slug</th>
+        <th>Published</th>
+        <th style="width:160px"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($posts as $post): ?>
+      <tr>
+        <td><span class="truncate d-inline-block" style="max-width:360px;"><?= e($post['title']) ?></span></td>
+        <td><span class="truncate d-inline-block" style="max-width:280px;"><?= e($post['slug']) ?></span></td>
+        <td class="text-muted small"><?= e(date('M d, Y', strtotime($post['created_at']))) ?></td>
+        <td class="text-end">
+          <a class="btn btn-sm btn-outline-secondary me-1" href="<?= e($BASE_URL) ?>/admin/post_edit.php?id=<?= (int)$post['id'] ?>">Edit</a>
+          <a class="btn btn-sm btn-outline-danger" href="<?= e($BASE_URL) ?>/admin/post_delete.php?id=<?= (int)$post['id'] ?>" onclick="return confirm('Delete this post?')">Delete</a>
+        </td>
+      </tr>
+    <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
 <?php require __DIR__ . '/../includes/footer.php'; ?>
