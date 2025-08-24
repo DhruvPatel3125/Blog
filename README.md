@@ -104,6 +104,8 @@ The application uses a MySQL database with the following tables:
         ```sql
         INSERT INTO users (name, email, password_hash) VALUES ('Admin', 'admin@example.com', '\$2y\$10\$YOUR_HASHED_PASSWORD_HERE');
         ```
+        c:\xampp\php\php.exe c:\xampp\htdocs\Blog\migrations\002_seed_admin.php
+
         You can generate a password hash using `password_hash('your_password', PASSWORD_DEFAULT)` in a PHP script.
 *   **Manage Posts**: After logging in, go to `http://localhost/Blog/admin/posts.php` to view, edit, or delete posts.
 *   **New Post**: From the "Manage Posts" page, click "New Post" to create a new blog post.
@@ -125,3 +127,45 @@ Feel free to fork the repository, make improvements, and submit pull requests.
 
 [Specify your license here, e.g., MIT, Apache 2.0, etc.]
 
+
+
+
+<?php
+// Database connection (adjust if needed)
+$host = "localhost";
+$user = "root";      // change if your MySQL has a different user
+$pass = "";          // change if your MySQL has a password
+$db   = "your_database_name"; // change to your database name
+
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+002_seed_admin.php
+// Admin details
+$name  = "Admin";
+$email = "admin@example.com";
+$plainPassword = "admin123";
+
+// Hash the password
+$passwordHash = password_hash($plainPassword, PASSWORD_BCRYPT);
+
+// Insert admin user (if not already exists)
+$sql = "INSERT INTO users (name, email, password_hash) 
+        VALUES (?, ?, ?)
+        ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash)";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sss", $name, $email, $passwordHash);
+
+if ($stmt->execute()) {
+    echo "✅ Admin user created/updated successfully.\n";
+    echo "Login with: $email / $plainPassword\n";
+} else {
+    echo "❌ Error: " . $stmt->error;
+}
+
+$stmt->close();
+$conn->close();

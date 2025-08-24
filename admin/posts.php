@@ -30,7 +30,7 @@ require __DIR__ . '/../includes/header.php';
         <td><span class="truncate d-inline-block" style="max-width:280px;"><?= e($post['slug']) ?></span></td>
         <td class="text-muted small"><?= e(date('M d, Y', strtotime($post['created_at']))) ?></td>
         <td class="text-end">
-          <a class="btn btn-sm btn-outline-secondary me-1" href="<?= e($BASE_URL) ?>/admin/post_edit.php?id=<?= (int)$post['id'] ?>">Edit</a>
+          <a class="btn btn-sm btn-outline-success me-1" href="<?= e($BASE_URL) ?>/admin/post_edit.php?id=<?= (int)$post['id'] ?>">Edit</a>
           <a class="btn btn-sm btn-outline-danger" href="<?= e($BASE_URL) ?>/admin/post_delete.php?id=<?= (int)$post['id'] ?>" onclick="return confirm('Delete this post?')">Delete</a>
         </td>
       </tr>
