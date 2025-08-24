@@ -12,7 +12,7 @@ if (!$post) {
     set_flash('error', 'Post not found.');
     redirect('/admin/posts.php');
 }
-
+//
 $title = $post['title'];
 $excerpt = $post['excerpt'];
 $content = $post['content'];
