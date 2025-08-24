@@ -209,3 +209,37 @@ a:hover { color: #1d4ed8; /* blue-700 */ }
 
 /* Flash messages spacing */
 .flash-stack > .alert { margin-bottom: 12px; }
+
+.row.g-4 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.col-md-4 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.card {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.card-img-top {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  object-fit: cover;
+  height: 180px;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
