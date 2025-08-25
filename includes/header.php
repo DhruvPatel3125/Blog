@@ -24,8 +24,12 @@ require_once __DIR__ . '/../config/config.php';
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+    <div class="collapse navbar-collapse w-100" id="nav">
+      <form class="d-flex mx-lg-auto my-3 my-lg-0 order-lg-2" role="search" method="get" action="<?= e($BASE_URL) ?>/index.php">
+        <input class="form-control me-2" type="search" placeholder="Search posts..." aria-label="Search" name="q" value="<?= e($_GET['q'] ?? '') ?>">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+      <ul class="navbar-nav ms-lg-auto align-items-lg-center gap-lg-2 order-lg-3">
         <li class="nav-item"><a class="nav-link" href="<?= e($BASE_URL) ?>/index.php">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="<?= e($BASE_URL) ?>/admin/posts.php">Admin</a></li>
         <li class="nav-item ms-lg-3">
