@@ -15,6 +15,8 @@ require_once __DIR__ . '/../config/config.php';
     <!-- Existing CSS -->
     <link rel="stylesheet" href="<?= e($BASE_URL) ?>/assets/css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for sun/moon icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <link href="<?= e($BASE_URL) ?>/assets/css/styles.css?v=<?= filemtime(__DIR__ . '/../assets/css/styles.css') ?>" rel="stylesheet">
 </head>
 <body>
@@ -33,7 +35,11 @@ require_once __DIR__ . '/../config/config.php';
         <li class="nav-item"><a class="nav-link" href="<?= e($BASE_URL) ?>/index.php">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="<?= e($BASE_URL) ?>/admin/posts.php">Admin</a></li>
         <li class="nav-item ms-lg-3">
-          <button class="btn btn-ghost btn-sm" id="themeToggle" type="button" aria-label="Toggle theme">Theme</button>
+          <button class="btn btn-ghost btn-sm d-inline-flex align-items-center gap-2" id="themeToggle" type="button" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon" id="iconMoon" aria-hidden="true"></i>
+            <i class="fa-solid fa-sun d-none" id="iconSun" aria-hidden="true"></i>
+            <span class="visually-hidden">Toggle theme</span>
+          </button>
         </li>
       </ul>
     </div>

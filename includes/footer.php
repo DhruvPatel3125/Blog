@@ -5,21 +5,34 @@
   (function() {
     var root = document.documentElement;
     var key = 'blog-theme';
-    var current = localStorage.getItem(key);
-    if (current === 'dark') {
-      root.setAttribute('data-theme', 'dark');
+    var iconMoon = document.getElementById('iconMoon');
+    var iconSun = document.getElementById('iconSun');
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+        if (iconMoon && iconSun) {
+          iconMoon.classList.add('d-none');
+          iconSun.classList.remove('d-none');
+        }
+      } else {
+        root.removeAttribute('data-theme');
+        if (iconMoon && iconSun) {
+          iconMoon.classList.remove('d-none');
+          iconSun.classList.add('d-none');
+        }
+      }
     }
+
+    var current = localStorage.getItem(key) || 'light';
+    applyTheme(current);
+
     var btn = document.getElementById('themeToggle');
     if (btn) {
       btn.addEventListener('click', function() {
-        var isDark = root.getAttribute('data-theme') === 'dark';
-        if (isDark) {
-          root.removeAttribute('data-theme');
-          localStorage.setItem(key, 'light');
-        } else {
-          root.setAttribute('data-theme', 'dark');
-          localStorage.setItem(key, 'dark');
-        }
+        var newTheme = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+        localStorage.setItem(key, newTheme);
+        applyTheme(newTheme);
       });
     }
   })();
